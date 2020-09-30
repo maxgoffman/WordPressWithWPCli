@@ -1,0 +1,28 @@
+version: "3.6"
+services:
+    db:
+        image: mysql:5.7
+        volumes:
+            - data:/var/lib/mysql 
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: "somewordpress"
+            MYSQL_DATABASE: "wordpress"
+            MYSQL_USER: "wordpress"
+            MYSQL_PASSWORD: "wordpress"
+                    
+    wordpress:
+        depends_on:
+            - db
+        build: .
+        container_name: ${COMPOSE_PROJECT_NAME}
+        restart: always
+        environment:
+            WORDPRESS_DB_HOST: "db"
+            WORDPRESS_DB_USER: "wordpress"
+            WORDPRESS_DB_PASSWORD: "wordpress"
+            WORDPRESS_URL: 
+            WP_CLI_CACHE_DIR: "/var/www/html/cache"
+
+volumes:
+    data:

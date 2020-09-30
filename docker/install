@@ -1,0 +1,10 @@
+#!/bin/sh
+sleep 10
+set -e
+#docker-compose exec -T wordpress wp db import ./mysql-dump/sitedumped.sql
+#echo "Updating WordPress URL from https to http"
+#docker-compose exec -T wordpress wp search-replace "urlfrom" "urlto"
+
+docker-compose exec -T wordpress sudo mkdir /var/www/html/wp-content/upgrade
+docker-compose exec -T wordpress chown -R www-data:www-data /var/www/html
+#docker-compose exec -T wordpress wp plugin install anyplugin --activate --allow-root

@@ -1,0 +1,6 @@
+version: "3.6"
+services:
+    wordpress:
+        ports:
+            - "80:80"
+        restart: always
